@@ -11,7 +11,8 @@ public enum InditexErrorMessages {
 	BAD_REQUEST("INDITEX 02", "Bad Request"),
 	NOT_FOUND("INDITEX 03", "Not Found"),
 	ERROR_INTERNO("INDITEX 04", "Error Interno"),
-	DATA_EXCEPTION("INDITEX 05", "Error data exception");
+	DATA_EXCEPTION("INDITEX 05", "Error data exception"),
+	PARSER_EXCEPTION("INDITEX 06", "Error de parseo");
 	
 	private String code;
 	private String description;

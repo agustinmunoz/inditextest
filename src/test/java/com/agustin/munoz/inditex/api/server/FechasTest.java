@@ -1,12 +1,15 @@
-package com.agustin.munoz.inditex.controller;
+package com.agustin.munoz.inditex.api.server;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.validateMockitoUsage;
-
+import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 
@@ -15,9 +18,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.cloud.contract.spec.internal.HttpStatus;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.web.servlet.MockMvc;
@@ -26,8 +32,13 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.context.WebApplicationContext;
+
+import com.agustin.munoz.inditex.exception.InditexDataAccessException;
+import com.agustin.munoz.inditex.exception.InditexException;
+import com.agustin.munoz.inditex.exception.InditexParserException;
 import com.agustin.munoz.inditex.openapi.model.InditexErrorResponse;
 import com.agustin.munoz.inditex.openapi.model.Price;
+import com.agustin.munoz.inditex.repository.PricesRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
@@ -44,6 +55,7 @@ public class FechasTest {
 	
 	
 	private MockMvc mvc;
+	
 	
 
 	@BeforeEach

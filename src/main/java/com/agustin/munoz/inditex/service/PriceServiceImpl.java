@@ -20,7 +20,6 @@ import com.agustin.munoz.inditex.mapper.InditexMapper;
 import com.agustin.munoz.inditex.openapi.model.Price;
 import com.agustin.munoz.inditex.repository.PricesRepository;
 
-
 import lombok.AllArgsConstructor;
 
 @Service
@@ -42,13 +41,17 @@ public class PriceServiceImpl implements PriceService {
 
 			
 			
+			/**
+			 * Pruebas Global Handler y Custom Exceptions
+			 */
 			/*String text ="pruebas GlobalHandler";
 			ObjectMapper obMapper = new ObjectMapper();
 			try {
 				Price pp = obMapper.readValue(text, Price.class);
 			} catch (JsonProcessingException e1) {
 				//throw new RuntimeException("Error de parseo", e1.getCause());
-				throw new InditexException(InditexErrorMessages.BAD_REQUEST.getDescription(),InditexErrorMessages.BAD_REQUEST.getCode(),  HttpStatus.valueOf(InditexErrorCodes.ERROR_400.getCode()));
+				//throw new InditexException(InditexErrorMessages.BAD_REQUEST.getDescription(),InditexErrorMessages.BAD_REQUEST.getCode(),  HttpStatus.valueOf(InditexErrorCodes.ERROR_400.getCode()));
+				throw new InditexParserException();
 			}*/
 			
 			

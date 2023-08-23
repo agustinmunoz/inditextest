@@ -74,25 +74,15 @@ public class InditexGlobalExceptionHandler  extends ResponseEntityExceptionHandl
 	    public ResponseEntity<InditexErrorResponse> customException(RuntimeException ex) {
 	        InditexErrorResponse errors = new InditexErrorResponse();
 	        errors.setTimestamp(LocalDateTime.now().toString());
-	        errors.setError(InditexErrorMessages.ERROR_INTERNO.getDescription());
-	        errors.setMessage(InditexErrorMessages.ERROR_INTERNO.getCode());
+	        errors.setMessage(InditexErrorMessages.ERROR_INTERNO.getDescription());
+	        errors.setError(InditexErrorMessages.ERROR_INTERNO.getCode());
+	        
 
 
 	        return new ResponseEntity<>(errors, HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	 
 	 
-	 
-	 @ExceptionHandler(Exception.class)
-	    public ResponseEntity<InditexErrorResponse> customException(Exception ex) {
-	        InditexErrorResponse errors = new InditexErrorResponse();
-	        errors.setTimestamp(LocalDateTime.now().toString());
-	        errors.setError(InditexErrorMessages.ERROR_INTERNO.getDescription());
-	        errors.setMessage(InditexErrorMessages.ERROR_INTERNO.getCode());
-
-
-	        return new ResponseEntity<>(errors, HttpStatus.INTERNAL_SERVER_ERROR);
-	    }
 		
 	
 }

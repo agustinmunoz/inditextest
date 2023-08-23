@@ -171,11 +171,11 @@ public class PriceServiceTest {
 		when(pricesRepository.findAllByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanEqual(1, 35455, dateTime, dateTime)).
 		thenThrow(new InditexDataAccessException("Error acceso a BBDD"));
 		try {
-		priceService.getPrice(35455,1, "2020-06-14T00:00:00");
+		priceService.getPrice(35455,1, "2020-06-14T00:00:00");	
 		} catch (InditexException e) {
-		assertEquals(InditexErrorMessages.DATA_EXCEPTION.getDescription(), e.getMessage());
-		assertEquals(InditexErrorMessages.DATA_EXCEPTION.getCode(),e.getInditexCode());
-		assertEquals(InditexErrorCodes.ERROR_500.getCode(),e.getStatus().value());
+		assertThat(InditexErrorMessages.DATA_EXCEPTION.getDescription()).isEqualTo(e.getMessage());
+		assertThat(InditexErrorMessages.DATA_EXCEPTION.getCode()).isEqualTo(e.getInditexCode());
+		assertThat(InditexErrorCodes.ERROR_500.getCode()).isEqualTo(e.getStatus().value());
 		}
 
 	}
